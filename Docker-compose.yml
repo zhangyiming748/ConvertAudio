@@ -1,0 +1,21 @@
+version: '3.9'
+name: conv_video
+services:
+  conv:
+    container_name: 'conv'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      cache_from: []
+    volumes:
+      - '/path/to/video:/data'
+    deploy:
+      resources:
+        limits:
+          memory: 8192M
+          cpus: '4'
+    environment:
+      - root=/data
+      - to=vp9
+      - level=Info
+      - direction=ToRight
